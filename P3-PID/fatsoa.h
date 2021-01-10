@@ -104,7 +104,7 @@ struct DIR_Structure{
 #define EMPTY              0x00
 #define DELETED            0xe5
 
-#define FAT_BAD_CLUSTER    0xFFFFFF07 //Hemos cambiado el 0 del principio ya que ese 0 va a la izquierda del 7.
+#define FAT_BAD_CLUSTER    0xFFFFFF07 //Hemos cambiado el 0 del principio, ya que ese 0 va a la izquierda del 7.
 #define FAT_LAST_CLUSTER   0x0FFFFFFF
 
 #endif

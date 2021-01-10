@@ -260,11 +260,11 @@ void fs_analisisForense()
 
     do{
         if(directory_info[i].DIR_attrib & ATTR_ARCHIVE){                        //Si es un archivo
-            memcpy(file_name, (const char *)directory_info[i].DIR_name, 11);    //????????
+            memcpy(file_name, (const char *)directory_info[i].DIR_name, 11);    //Copiamos el nombre
             file_name[11]  = '\0';
             file_name[0]  = ' ';
 
-            if (strcmp(file_name, file_get_modificado) == 0)
+            if (strcmp(file_name, file_get_modificado) == 0)                    //Comparamos nombres
             {                    
                 printf("El archivo es: %s\n", file_name);                                                 
                 file_found = 1;
