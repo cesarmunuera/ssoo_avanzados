@@ -310,7 +310,7 @@ void fs_analisisForense()
         i++;
     }
     close(archivo);
-    rename(" DS     PDF", "DS.PDF");
+    rename(" DS     PDF", "_DS.PDF");
     printf("Tamanio total del archivo: %d\n", tam_total_archivo);
 }
 
