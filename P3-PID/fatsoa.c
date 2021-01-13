@@ -217,7 +217,7 @@ void fs_get( char *file_get)
             lseek(fd, file_offset, SEEK_SET);                           //Desplazamos el puntero a la primera posicion de memoria del cluster
 
             bytes_read = read(fd, buffer, tam_archivo);                 //Copiamos los datos del archivo original en el buffer
-            write(archivo, buffer, bytes_read);                         //Copiamos los datos del buffer en el nuevo archivo
+            write(archivo, buffer, bytes_read);                         //Copiamos los datos del buffer en el nuevo archivo. Se almacenara fuera, tal y como se pide en el enunciado
 
             //Actualizamos el cluster
 
@@ -259,12 +259,12 @@ void fs_analisisForense()
     uint32_t file_cluster = 7, file_offset, tam_archivo, tam_total_archivo = 0;
 
     do{
-        if(directory_info[i].DIR_attrib & ATTR_ARCHIVE){                        //Si es un archivo
-            memcpy(file_name, (const char *)directory_info[i].DIR_name, 11);    //Copiamos el nombre
+        if(directory_info[i].DIR_attrib & ATTR_ARCHIVE){                           //Si es un archivo
+            memcpy(file_name, (const char *)directory_info[i].DIR_name, 11);       //Copiamos el nombre
             file_name[11]  = '\0';
             file_name[0]  = ' ';
 
-            if (strcmp(file_name, file_get_modificado) == 0)                    //Comparamos nombres
+            if (strcmp(file_name, file_get_modificado) == 0)                      //Comparamos nombres
             {                    
                 printf("El archivo es: %s\n", file_name);                                                 
                 file_found = 1;
@@ -294,7 +294,7 @@ void fs_analisisForense()
         lseek(fd, file_offset, SEEK_SET);                              //Desplazamos el puntero a la primera posicion de memoria del cluster
 
         bytes_read = read(fd, buffer, tam_archivo);                    //Copiamos los datos del archivo original en el buffer
-        write(archivo, buffer, bytes_read);                            //Copiamos los datos del buffer en el nuevo archivo
+        write(archivo, buffer, bytes_read);                            //Copiamos los datos del buffer en el nuevo archivo, y lo almacenamos fuera, ta y como lo pide el enunciado.
 
         //Actualizamos el cluster
 
@@ -310,7 +310,7 @@ void fs_analisisForense()
         i++;
     }
     close(archivo);
-    rename(" DS     PDF", "_DS.PDF");
+    rename(" DS     PDF", "_DS.PDF");                                  //Renombramos el archivo a lo especificado
     printf("Tamanio total del archivo: %d\n", tam_total_archivo);
 }
 
