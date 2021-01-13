@@ -200,7 +200,7 @@ void fs_get( char *file_get)
             printf("No es el ultimo cluster!! \n");
         }
 
-        int ultimo_cluster = 0, bytes_written, bytes_read, archivo;
+        int ultimo_cluster = 0, bytes_read, archivo;
         char *buffer;
         uint32_t tam_archivo;
 
@@ -217,7 +217,7 @@ void fs_get( char *file_get)
             lseek(fd, file_offset, SEEK_SET);                           //Desplazamos el puntero a la primera posicion de memoria del cluster
 
             bytes_read = read(fd, buffer, tam_archivo);                 //Copiamos los datos del archivo original en el buffer
-            bytes_written = write(archivo, buffer, bytes_read);         //Copiamos los datos del buffer en el nuevo archivo
+            write(archivo, buffer, bytes_read);                         //Copiamos los datos del buffer en el nuevo archivo
 
             //Actualizamos el cluster
 
@@ -255,7 +255,7 @@ void fs_analisisForense()
 {
     char file_name[11+1], *buffer;
     char file_get_modificado[11+1] = " DS     PDF\0";                              //Buscamos que los 11 elementos disponibles sean iguales a " DS     PDf"       
-    int i = 0, file_found = 0, archivo, bytes_read, bytes_written, corrupto;
+    int i = 0, file_found = 0, archivo, bytes_read, corrupto;
     uint32_t file_cluster = 7, file_offset, tam_archivo, tam_total_archivo = 0;
 
     do{
@@ -294,7 +294,7 @@ void fs_analisisForense()
         lseek(fd, file_offset, SEEK_SET);                              //Desplazamos el puntero a la primera posicion de memoria del cluster
 
         bytes_read = read(fd, buffer, tam_archivo);                    //Copiamos los datos del archivo original en el buffer
-        bytes_written = write(archivo, buffer, bytes_read);            //Copiamos los datos del buffer en el nuevo archivo
+        write(archivo, buffer, bytes_read);                            //Copiamos los datos del buffer en el nuevo archivo
 
         //Actualizamos el cluster
 
